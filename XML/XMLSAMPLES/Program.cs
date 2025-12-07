@@ -1,10 +1,11 @@
 using System.Xml.Linq;
 
-//CreateProductDocument();
-//CreateProductDocumentWithAttributes();
+// CreateProductDocument();
+// CreateProductDocumentWithAttributes();
 // CreateNestedXmlDocument();
-//ParseStringIntoXDocument();
-ParseStringIntoXElement();
+// ParseStringIntoXDocument();
+// ParseStringIntoXElement();
+AddNewNode();
 
 Console.ReadKey();
 
@@ -123,6 +124,35 @@ XElement ParseStringIntoXElement() {
   return elem;
 }
 
+XDocument AddNewNode()
+{
+    // Get a Product XML string
+    string xml = CreateProductXmlString();
+    // Create XML Document using Parse()
+    XDocument doc = XDocument.Parse(xml);
+
+    // Create a new XElement object to add
+    XElement elem = 
+        new XElement("Product",
+            new XElement("ProductID", "745"),
+            new XElement("Name", "HL Mountain Frame"),
+            new XElement("ProductNumber", "FR-M94B-48"),
+            new XElement("Color", "Black"),
+            new XElement("StandardCost", "699.09"),
+            new XElement("ListPrice", "1349.6000"),
+            new XElement("Size", "48")
+            
+        );
+
+    //Add the new XElement object to the root
+    doc.Root.Add(elem);
+    
+    // Display Document
+    Console.WriteLine(doc);
+
+    return doc;
+}
+
 string CreateProductXmlString()
 {
 return @"<Products>
@@ -145,3 +175,6 @@ return @"<Products>
         </Product>
         </Products>";
 }
+
+
+
