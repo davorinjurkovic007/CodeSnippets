@@ -5,7 +5,9 @@ using System.Xml.Linq;
 // CreateNestedXmlDocument();
 // ParseStringIntoXDocument();
 // ParseStringIntoXElement();
-AddNewNode();
+// AddNewNode();
+// UpdateNode();
+DeleteNode();
 
 Console.ReadKey();
 
@@ -151,6 +153,52 @@ XDocument AddNewNode()
     Console.WriteLine(doc);
 
     return doc;
+}
+
+XElement UpdateNode()
+{
+    // Get a Product XML string
+    string xml = CreateProductXmlString();
+    // Create XML Document using Parse()
+    XDocument doc = XDocument.Parse(xml);
+
+    // Get the First product element
+    XElement elem = doc.Root.Descendants().FirstOrDefault();
+
+    if(elem != null)
+    {
+        // Modify some of the node values
+        elem.Element("Name").Value = "CHANGED PRODUCT";
+        elem.Element("ListPrice").Value = "999.99";
+    }
+
+    // Display the Changed Element
+    // Console.WriteLine(elem);
+    Console.WriteLine(doc);
+
+    return elem;
+}
+
+XElement DeleteNode()
+{
+    // Get a Product XML string
+    string xml = CreateProductXmlString();
+    // Create XML Document using Parse()
+    XDocument doc = XDocument.Parse(xml);
+
+    // TODO: Get the First product element
+    XElement elem = doc.Root.Descendants().FirstOrDefault();
+
+    if(elem != null)
+    {
+        // Delete the node
+        elem.Remove();
+    }
+
+    // Display Document
+    Console.WriteLine(doc);
+
+    return elem;
 }
 
 string CreateProductXmlString()
