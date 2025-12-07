@@ -1,7 +1,8 @@
 using System.Xml.Linq;
 
 //CreateProductDocument();
-CreateProductDocumentWithAttributes();
+//CreateProductDocumentWithAttributes();
+CreateNestedXmlDocument();
 
 Console.ReadKey();
 
@@ -44,6 +45,31 @@ XDocument CreateProductDocumentWithAttributes()
                     new XElement("StandardCost", "24.49"),
                     new XElement("ListPrice", "89.99"),
                     new XElement("Size", "Medium"))
+            )
+        );
+
+    // Display the Document
+    Console.WriteLine(doc);
+
+    return doc;
+}
+
+XDocument CreateNestedXmlDocument()
+{
+    XDocument doc = 
+        new (
+            new XDeclaration("1.0", "utf-8", "yes"),
+            new XComment("Product Information"),
+            new XElement("Products",
+                new XElement("Product",
+                    new XAttribute("ProductId", "1"),
+                    new XElement("Name", "Bicycle Helmet"),
+                    new XElement("Sales",
+                        new XElement("SalesDetail",
+                            new XAttribute("SalesOrderId", "1"),
+                            new XElement("OrderDate", Convert.ToDateTime("10/1/2021")))
+                    )
+                )
             )
         );
 
