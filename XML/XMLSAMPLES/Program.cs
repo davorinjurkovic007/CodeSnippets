@@ -3,7 +3,8 @@ using System.Xml.Linq;
 //CreateProductDocument();
 //CreateProductDocumentWithAttributes();
 // CreateNestedXmlDocument();
-ParseStringIntoXDocument();
+//ParseStringIntoXDocument();
+ParseStringIntoXElement();
 
 Console.ReadKey();
 
@@ -108,4 +109,39 @@ XDocument ParseStringIntoXDocument() {
   Console.WriteLine(doc);
 
   return doc;
+}
+
+XElement ParseStringIntoXElement() {
+  string xml = CreateProductXmlString();
+
+  // Create XML Document using Parse()
+  XElement elem = XElement.Parse(xml);
+
+  // Display XML Document
+  Console.WriteLine(elem);
+
+  return elem;
+}
+
+string CreateProductXmlString()
+{
+return @"<Products>
+        <Product>
+            <ProductID>706</ProductID>
+            <Name>HL Road Frame - Red, 58</Name>
+            <ProductNumber>FR-R92R-58</ProductNumber>
+            <Color>Red</Color>
+            <StandardCost>1059.3100</StandardCost>
+            <ListPrice>1500.0000</ListPrice>
+            <Size>58</Size>
+        </Product>
+        <Product>
+            <ProductID>707</ProductID>
+            <Name>Sport-100 Helmet, Red</Name>   
+            <Color>Red</Color>
+            <StandardCost>13.0800</StandardCost>
+            <ListPrice>34.9900</ListPrice>
+            <Size />
+        </Product>
+        </Products>";
 }
