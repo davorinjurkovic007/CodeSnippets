@@ -16,7 +16,7 @@ namespace XMLSamples {
     /// Use the Load() method of the XDocument class
     /// </summary>
     public XDocument LoadUsingXDocument() {
-      // TODO: Write your code here
+      
       XDocument doc = null;
 
       // Display XDocument

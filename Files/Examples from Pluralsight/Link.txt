@@ -1,0 +1,2 @@
+Pluralsight course Working with Files in C#
+https://app.pluralsight.com/library/courses/c-sharp-10-working-files/exercise-files
