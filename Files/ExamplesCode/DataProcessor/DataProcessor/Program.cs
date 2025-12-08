@@ -10,6 +10,15 @@ var command = args[0];
 if(command == "--file")
 {
     var filePath = args[1];
+
+    // Check if path is absolute
+    if(!Path.IsPathFullyQualified(filePath))
+    {
+        WriteLine($"ERROR: path '{filePath}' must be fully qualified.");
+        ReadLine();
+        return;
+    }
+
     WriteLine($"Single file {filePath} selected");
     ProcessSingleFile(filePath);
 }
