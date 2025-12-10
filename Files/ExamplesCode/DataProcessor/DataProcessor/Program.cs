@@ -45,6 +45,19 @@ void ProcessSingleFile(string filePath)
 
 void ProcessDirectory(string directoryPath, string fileType)
 {
-    throw new NotImplementedException();
+    switch(fileType)
+    {
+        case "TEXT":
+            string[] textFiles = Directory.GetFiles(directoryPath, "*.txt");
+            foreach(var textFilePath in textFiles)
+            {
+                var fileProcessor = new FileProcessor(textFilePath);
+                fileProcessor.Process();
+            }
+            break;
+        default:
+            WriteLine($"ERROR: {fileType} is not supported");
+            return;
+    }
 }
 
