@@ -1,4 +1,5 @@
 ﻿using DataProcessor;
+using System.Runtime.Caching;
 using System.Runtime.InteropServices;
 using static System.Console;
 
@@ -28,7 +29,7 @@ if(!Directory.Exists(directoryToWatch))
 
 WriteLine($"Watching directory {directoryToWatch} for changes");
 using var inputFileWatcher = new FileSystemWatcher(directoryToWatch);
-using var timer = new Timer(ProcessFiles!, null, 0, 1000);
+//using var timer = new Timer(ProcessFiles!, null, 0, 1000);
 
 inputFileWatcher.IncludeSubdirectories = false;
 inputFileWatcher.InternalBufferSize = 32_768; // 32 KB
@@ -107,7 +108,8 @@ void FileCreated(object sender, FileSystemEventArgs e)
     WriteLine($"* File created: {e.Name} - type: {e.ChangeType}");
 
     //ProcessSingleFile(e.FullPath);
-    FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    //FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    AddToCache(e.FullPath);
 }
 
 void FileChanged(object sender, FileSystemEventArgs e)
@@ -115,7 +117,8 @@ void FileChanged(object sender, FileSystemEventArgs e)
     WriteLine($"* File changed. {e.Name} - type: {e.ChangeType}");
 
     //ProcessSingleFile(e.FullPath);
-    FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    //FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    AddToCache(e.FullPath);
 }
 
 void FileDeleted(object sender, FileSystemEventArgs e)
@@ -133,14 +136,42 @@ void WatcherError(object sender, ErrorEventArgs e)
     WriteLine($"ERROR: file system watching may no longer be active: {e.GetException()}");
 }
 
-void ProcessFiles(object stateInfo)
+//void ProcessFiles(object stateInfo)
+//{
+//    foreach(var filename in FilesToProcess.Files.Keys)
+//    {
+//        if(FilesToProcess.Files.TryRemove(filename, out _))
+//        {
+//            var fileProcessor = new FileProcessor(filename);
+//            fileProcessor.Process();
+//        }
+//    }
+//}
+
+void AddToCache(string fullPath)
 {
-    foreach(var filename in FilesToProcess.Files.Keys)
+    var item = new CacheItem(fullPath, fullPath);
+
+    var policy = new CacheItemPolicy
     {
-        if(FilesToProcess.Files.TryRemove(filename, out _))
-        {
-            var fileProcessor = new FileProcessor(filename);
-            fileProcessor.Process();
-        }
+        RemovedCallback = ProcessFile,
+        SlidingExpiration = TimeSpan.FromSeconds(2)
+    };
+
+    FilesToProcess.Files.Add(item, policy );
+}
+
+void ProcessFile(CacheEntryRemovedArguments args)
+{
+    WriteLine($"* Cache item removed: {args.CacheItem.Key} because {args.RemovedReason}");
+
+    if(args.RemovedReason == CacheEntryRemovedReason.Expired)
+    {
+        var fileProcessor = new FileProcessor(args.CacheItem.Key);
+        fileProcessor.Process();
+    }
+    else
+    {
+        WriteLine($"WARNING: {args.CacheItem.Key} was removed unexpectedly and may... ");
     }
 }
