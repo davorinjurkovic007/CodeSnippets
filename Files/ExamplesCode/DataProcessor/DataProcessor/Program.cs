@@ -12,6 +12,9 @@ using static System.Console;
 // https://syntackle.com/blog/the-issue-of-watching-file-changes-in-docker/
 // How to Build a File Watcher Service in C# Using FileSystemWatcher
 // https://en.ittrip.xyz/c-sharp/csharp-file-watcher
+// U slučaju kada je dokument prevelika da bi sa njima baratali u memoriju, koristiti ovo: 
+// Memory-mapped files
+// https://learn.microsoft.com/en-us/dotnet/standard/io/memory-mapped-files
 
 WriteLine("Parsing command line options");
 
