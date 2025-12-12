@@ -27,6 +27,8 @@ if(!Directory.Exists(directoryToWatch))
     return;
 }
 
+ProcessExistingFiles(directoryToWatch);
+
 WriteLine($"Watching directory {directoryToWatch} for changes");
 using var inputFileWatcher = new FileSystemWatcher(directoryToWatch);
 //using var timer = new Timer(ProcessFiles!, null, 0, 1000);
@@ -173,5 +175,16 @@ void ProcessFile(CacheEntryRemovedArguments args)
     else
     {
         WriteLine($"WARNING: {args.CacheItem.Key} was removed unexpectedly and may... ");
+    }
+}
+
+void ProcessExistingFiles(string inputDirectory)
+{
+    WriteLine($"Cheking {inputDirectory} for existing files");
+
+    foreach(var filePath in Directory.EnumerateFiles(inputDirectory))
+    {
+        WriteLine($"  - Found {filePath}");
+        AddToCache(filePath);
     }
 }
