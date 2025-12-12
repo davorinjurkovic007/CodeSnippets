@@ -2,6 +2,16 @@
 using System.Runtime.InteropServices;
 using static System.Console;
 
+// NOTE: Par primjera, kada bi htjeli da to radi na Linux-u.
+// Nema čistog rješenja, nego se mora iči preko posebnog paketa. 
+// https://www.nuget.org/packages/microsoft.extensions.fileproviders.physical/
+// https://github.com/dotnet/runtime/discussions/69700
+// https://stackoverflow.com/questions/57024640/why-filesystemwatcher-doesnt-work-in-linux-container-watching-windows-volume/57025115#57025115
+// https://stackoverflow.com/questions/67214771/how-to-use-filesystemwatcher-on-linux-with-net-5-0
+// https://syntackle.com/blog/the-issue-of-watching-file-changes-in-docker/
+// How to Build a File Watcher Service in C# Using FileSystemWatcher
+// https://en.ittrip.xyz/c-sharp/csharp-file-watcher
+
 WriteLine("Parsing command line options");
 
 var directoryToWatch = args[0];
@@ -97,7 +107,7 @@ void FileCreated(object sender, FileSystemEventArgs e)
     WriteLine($"* File created: {e.Name} - type: {e.ChangeType}");
 
     //ProcessSingleFile(e.FullPath);
-    FileToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
 }
 
 void FileChanged(object sender, FileSystemEventArgs e)
@@ -105,7 +115,7 @@ void FileChanged(object sender, FileSystemEventArgs e)
     WriteLine($"* File changed. {e.Name} - type: {e.ChangeType}");
 
     //ProcessSingleFile(e.FullPath);
-    FileToProcess.Files.TryAdd(e.FullPath, e.FullPath);
+    FilesToProcess.Files.TryAdd(e.FullPath, e.FullPath);
 }
 
 void FileDeleted(object sender, FileSystemEventArgs e)
@@ -125,9 +135,9 @@ void WatcherError(object sender, ErrorEventArgs e)
 
 void ProcessFiles(object stateInfo)
 {
-    foreach(var filename in FileToProcess.Files.Keys)
+    foreach(var filename in FilesToProcess.Files.Keys)
     {
-        if(FileToProcess.Files.TryRemove(filename, out _))
+        if(FilesToProcess.Files.TryRemove(filename, out _))
         {
             var fileProcessor = new FileProcessor(filename);
             fileProcessor.Process();
