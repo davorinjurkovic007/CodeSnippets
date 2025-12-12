@@ -62,17 +62,7 @@ internal class FileProcessor
 
         // Determine type of file
         string extension = Path.GetExtension(InputFilePath);
-        switch (extension)
-        {
-            case ".txt":
-                ProcessTextFile(inProgressFilePath); 
-                break;
-            default:
-                WriteLine($"{extension} is an unsupported file type.");
-                break;
-        }
 
-        // Move file after processing is complete
         string completeDirectoryPath = Path.Combine(rootDirectoryPath, CompleteDirectoryName);
         Directory.CreateDirectory(completeDirectoryPath);
 
@@ -81,17 +71,44 @@ internal class FileProcessor
 
         string completedFilePath = Path.Combine(completeDirectoryPath, coompletedFileName);
 
-        WriteLine($"Moving {inProgressFilePath} to {completedFilePath}");
-        File.Move(inProgressFilePath, completedFilePath);
+
+        switch (extension)
+        {
+            case ".txt":
+                //ProcessTextFile(inProgressFilePath); 
+                var textProcessor = new TextFileProcessor(inProgressFilePath, completedFilePath);
+                textProcessor.Process();
+                break;
+            default:
+                WriteLine($"{extension} is an unsupported file type.");
+                break;
+        }
+
+        WriteLine($"Completed processing of {inProgressFilePath}");
+
+        WriteLine($"Deleting {inProgressFilePath}");
+        File.Delete(inProgressFilePath);
+
+        // Move file after processing is complete
+        //string completeDirectoryPath = Path.Combine(rootDirectoryPath, CompleteDirectoryName);
+        //Directory.CreateDirectory(completeDirectoryPath);
+
+        //string fileNameWithCompletedExtension = Path.ChangeExtension(inputFileName, ".complete");
+        //string coompletedFileName = $"{Guid.NewGuid()}_{fileNameWithCompletedExtension}";
+
+        //string completedFilePath = Path.Combine(completeDirectoryPath, coompletedFileName);
+
+        //WriteLine($"Moving {inProgressFilePath} to {completedFilePath}");
+        //File.Move(inProgressFilePath, completedFilePath);
 
         //string? inProgressDirectoryPath = Path.GetDirectoryName(inProgressFilePath);
         //Directory.Delete(inProgressDirectoryPath!, true);
     }
 
-    private void ProcessTextFile(string inProgressFilePath)
-    {
-        WriteLine($"Processing text file {inProgressFilePath}");
+    //private void ProcessTextFile(string inProgressFilePath)
+    //{
+    //    WriteLine($"Processing text file {inProgressFilePath}");
 
-        // Read in and process
-    }
+    //    // Read in and process
+    //}
 }
