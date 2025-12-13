@@ -31,31 +31,57 @@ internal class BinaryFileProcessor
     //    File.WriteAllBytes(OutputFilePath, newData);
     //}
 
+    //public void Process()
+    //{
+    //    var openToReadFrom = new FileStreamOptions { Mode = FileMode.Open, };
+    //    using FileStream inputFileStream = File.Open(InputFilePath, openToReadFrom);
+
+    //    using FileStream outputFileStream = File.Create(OutputFilePath);
+
+    //    const int entOfStream = -1;
+
+    //    int largestByte = 0;
+
+    //    // read next byte (as na int): returns -1 if end of stream
+    //    int currentByte = inputFileStream.ReadByte();
+    //    while(currentByte != entOfStream)
+    //    {
+    //        outputFileStream.WriteByte((byte)currentByte);
+
+    //        if(currentByte > largestByte)
+    //        {
+    //            largestByte = currentByte;
+    //        }
+
+    //        currentByte = inputFileStream.ReadByte();
+    //    }
+
+    //    outputFileStream.WriteByte((byte)largestByte);
+    //}
+
     public void Process()
     {
         var openToReadFrom = new FileStreamOptions { Mode = FileMode.Open, };
         using FileStream inputFileStream = File.Open(InputFilePath, openToReadFrom);
+        using var binaryReader = new BinaryReader(inputFileStream);
 
         using FileStream outputFileStream = File.Create(OutputFilePath);
+        using var binaryWriter = new BinaryWriter(outputFileStream);
 
-        const int entOfStream = -1;
+        byte largestByte = 0;
 
-        int largestByte = 0;
-
-        // read next byte (as na int): returns -1 if end of stream
-        int currentByte = inputFileStream.ReadByte();
-        while(currentByte != entOfStream)
+        while (binaryReader.BaseStream.Position < binaryReader.BaseStream.Length)
         {
-            outputFileStream.WriteByte((byte)currentByte);
+            byte currentByte = binaryReader.ReadByte();
 
-            if(currentByte > largestByte)
+            binaryWriter.Write(currentByte);
+
+            if (currentByte > largestByte)
             {
                 largestByte = currentByte;
             }
-
-            currentByte = inputFileStream.ReadByte();
         }
 
-        outputFileStream.WriteByte((byte)largestByte);
+        binaryWriter.Write(largestByte);
     }
 }
