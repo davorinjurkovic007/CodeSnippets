@@ -24,6 +24,7 @@ internal class CsvFileProcessor
             Comment = '@',
             AllowComments = true,
             TrimOptions = TrimOptions.Trim,
+            IgnoreBlankLines = true, // this is default
         };
         using CsvReader csvReader = new CsvReader(inputReader, csvConfiguration);
         IEnumerable<dynamic> records = csvReader.GetRecords<dynamic>();
