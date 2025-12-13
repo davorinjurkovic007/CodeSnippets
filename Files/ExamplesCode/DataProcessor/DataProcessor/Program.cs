@@ -15,6 +15,8 @@ using static System.Console;
 // U slučaju kada je dokument prevelika da bi sa njima baratali u memoriju, koristiti ovo: 
 // Memory-mapped files
 // https://learn.microsoft.com/en-us/dotnet/standard/io/memory-mapped-files
+// RandomAccess Class
+// https://learn.microsoft.com/en-us/dotnet/api/system.io.randomaccess?view=net-10.0
 
 WriteLine("Parsing command line options");
 
