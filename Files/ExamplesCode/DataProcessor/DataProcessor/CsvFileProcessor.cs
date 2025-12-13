@@ -23,6 +23,7 @@ internal class CsvFileProcessor
         {
             Comment = '@',
             AllowComments = true,
+            TrimOptions = TrimOptions.Trim,
         };
         using CsvReader csvReader = new CsvReader(inputReader, csvConfiguration);
         IEnumerable<dynamic> records = csvReader.GetRecords<dynamic>();
