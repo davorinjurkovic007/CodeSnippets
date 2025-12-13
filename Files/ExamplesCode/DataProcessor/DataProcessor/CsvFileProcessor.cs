@@ -26,7 +26,9 @@ internal class CsvFileProcessor
             TrimOptions = TrimOptions.Trim,
             IgnoreBlankLines = true, // this is the default
             HasHeaderRecord = true, // this is the default
-            Delimiter = "," // this is the default
+            Delimiter = ",", // this is the default
+            //HeaderValidated = null, // DANGER!!! Removing data Header validation
+            //MissingFieldFound = null // DANGER!!! Use very caferuli. 
 
         };
         using CsvReader csvReader = new CsvReader(inputReader, csvConfiguration);
