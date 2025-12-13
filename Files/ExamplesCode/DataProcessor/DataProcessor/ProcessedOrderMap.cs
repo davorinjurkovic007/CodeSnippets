@@ -10,6 +10,7 @@ internal class ProcessedOrderMap : ClassMap<ProcessedOrder>
         //Map(po => po.OrderNumber).Name("OrderNumer");
         AutoMap(CultureInfo.InvariantCulture);
         Map(po => po.Customer).Name("CustomerNumber");
-        Map(po => po.Amount).Name("Quantity");
+        Map(po => po.Amount).Name("Quantity")
+                            .TypeConverter<RomanTypeConverter>();
     }
 }

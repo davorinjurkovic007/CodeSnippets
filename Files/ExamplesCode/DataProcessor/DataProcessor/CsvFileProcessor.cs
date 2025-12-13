@@ -31,6 +31,7 @@ internal class CsvFileProcessor
         };
         using CsvReader csvReader = new CsvReader(inputReader, csvConfiguration);
         csvReader.Context.RegisterClassMap<ProcessedOrderMap>();
+
         //IEnumerable<dynamic> records = csvReader.GetRecords<dynamic>();
         //IEnumerable<Order> records = csvReader.GetRecords<Order>();
         IEnumerable<ProcessedOrder> records = csvReader.GetRecords<ProcessedOrder>();
