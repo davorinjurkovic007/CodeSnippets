@@ -24,17 +24,27 @@ internal class CsvFileProcessor
             Comment = '@',
             AllowComments = true,
             TrimOptions = TrimOptions.Trim,
-            IgnoreBlankLines = true, // this is default
+            IgnoreBlankLines = true, // this is the default
+            HasHeaderRecord = true, // this is the default
+            Delimiter = ";"
+
         };
         using CsvReader csvReader = new CsvReader(inputReader, csvConfiguration);
         IEnumerable<dynamic> records = csvReader.GetRecords<dynamic>();
 
         foreach (var record in records)
         {
+            // With header
             Console.WriteLine(record.OrderNumber);
             Console.WriteLine(record.CustomerNumber);
             Console.WriteLine(record.Description);
             Console.WriteLine(record.Quantity);
+
+            // Without header
+            //Console.WriteLine(record.Field1);
+            //Console.WriteLine(record.Field2);
+            //Console.WriteLine(record.Field3);
+            //Console.WriteLine(record.Field4);
         }
     }
 }
