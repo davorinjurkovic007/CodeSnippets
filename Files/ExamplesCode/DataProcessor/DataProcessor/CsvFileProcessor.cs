@@ -5,7 +5,7 @@ using System.IO.Abstractions;
 
 namespace DataProcessor;
 
-internal class CsvFileProcessor
+public class CsvFileProcessor
 {
     private readonly IFileSystem _fileSystem;
 
