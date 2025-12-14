@@ -17,6 +17,8 @@ using static System.Console;
 // https://learn.microsoft.com/en-us/dotnet/standard/io/memory-mapped-files
 // RandomAccess Class
 // https://learn.microsoft.com/en-us/dotnet/api/system.io.randomaccess?view=net-10.0
+// Approval Tests 5 for .NET
+//  https://app.pluralsight.com/library/courses/approval-tests-dot-net/table-of-contents
 
 WriteLine("Parsing command line options");
 
