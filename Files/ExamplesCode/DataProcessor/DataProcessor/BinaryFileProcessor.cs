@@ -2,7 +2,7 @@
 
 namespace DataProcessor;
 
-internal class BinaryFileProcessor
+public class BinaryFileProcessor
 {
     private readonly IFileSystem _fileSystem;
 
