@@ -1,0 +1,3 @@
+Guessed letters: XPL
+Guesses remaining: 9
+PL---L-----

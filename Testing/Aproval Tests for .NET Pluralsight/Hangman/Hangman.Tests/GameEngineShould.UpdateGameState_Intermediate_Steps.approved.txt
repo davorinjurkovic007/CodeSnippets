@@ -1,0 +1,12 @@
+﻿Guessed letters: 
+Guesses remaining: 10
+-----------
+Guessed letters: X
+Guesses remaining: 9
+-----------
+Guessed letters: XP
+Guesses remaining: 9
+P----------
+Guessed letters: XPL
+Guesses remaining: 9
+PL---L-----
