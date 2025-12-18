@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HRReportGenerator.Tests/HRReportGenerator.Tests.csproj" />
+  <Project Path="HRReportGenerator/HRReportGenerator.csproj" />
+</Solution>

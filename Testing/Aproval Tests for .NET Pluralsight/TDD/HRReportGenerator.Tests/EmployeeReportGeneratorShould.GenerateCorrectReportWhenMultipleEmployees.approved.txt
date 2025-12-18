@@ -1,0 +1,9 @@
+HR Employees Report
+-------------------
+
+First Name               Last Name                  Pay Grade     DOB
+Sarah                    Smith                      1             travnja 10, 1980
+Gentry                   Smith                      3             srpnja 1, 1970
+Arnold                   Jones                      2             prosinca 21, 1972
+
+Total Employees: 3
