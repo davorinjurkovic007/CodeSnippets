@@ -1,6 +1,8 @@
 HR Employees Report
 -------------------
 
+Date Generated: srpanj 1, 2025
+
 First Name               Last Name                  Pay Grade     DOB
 Sarah                    Smith                      1             travnja 10, 1980
 Gentry                   Smith                      3             srpnja 1, 1970

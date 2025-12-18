@@ -12,6 +12,9 @@ namespace HRReportGenerator
             reportText.AppendLine("-------------------");
             reportText.AppendLine();
 
+            reportText.AppendLine($"Date Generated: {DateTime.Now:MMMM d, yyyy}");
+            reportText.AppendLine();
+
             reportText.AppendLine("First Name               Last Name                  Pay Grade     DOB");
             foreach (var employee in employees)
             {

@@ -1,5 +1,6 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Reporters;
+using System.Text.RegularExpressions;
 
 namespace HRReportGenerator.Tests
 {
@@ -20,7 +21,8 @@ namespace HRReportGenerator.Tests
 
             string reportText = sut.Generate(employees);
 
-            Approvals.Verify(reportText);
+            Approvals.Verify(reportText, 
+                (input) => Regex.Replace(input, "Date Generated.*", "Date Generated: srpanj 1, 2025"));
         }
     }
 }
