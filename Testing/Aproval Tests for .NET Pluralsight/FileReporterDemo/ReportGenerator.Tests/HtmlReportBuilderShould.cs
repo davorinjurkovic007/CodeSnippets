@@ -1,5 +1,6 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Reporters;
+using ApprovalTests.Reporters.TestFrameworks;
 
 namespace ReportGenerator.Tests
 {
@@ -8,7 +9,9 @@ namespace ReportGenerator.Tests
         [Fact]
         // To ne radi u .NET-u
         //[UseReporter(typeof(FileLauncherReporter))]
-        [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+        //[UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+        //[UseReporter(typeof(XUnit2Reporter))]
+        [UseReporter(typeof(FrameworkAssertReporter))]
         public void Build()
         {
             var model = new ReportModel
@@ -16,7 +19,7 @@ namespace ReportGenerator.Tests
                 Title = "Annual Report",
                 ReportLines =
                 {
-                    "Line 1",
+                    "Line 1xyz",
                     "Line 2",
                     "Line 3",
                     "Line 4",
