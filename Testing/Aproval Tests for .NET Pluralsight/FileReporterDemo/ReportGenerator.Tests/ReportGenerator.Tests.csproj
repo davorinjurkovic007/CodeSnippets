@@ -18,9 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ReportGenerator\ReportGenerator.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ReportGenerator\ReportGenerator.csproj" />
+</ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
