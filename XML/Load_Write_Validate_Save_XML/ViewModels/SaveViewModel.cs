@@ -48,7 +48,63 @@ namespace XMLSamples {
     public string SaveUsingXmlWriter() {
       // Create the XML Writer
       using (XmlWriter writer = XmlWriter.Create(XmlFileName)) {
-        
+                // Write a Start Element (Root)
+                writer.WriteStartElement("Products");
+
+                // Write a Start Element (Parent)
+                writer.WriteStartElement("Product");
+                // Write an Attribute
+                writer.WriteAttributeString("ProductID", "999");
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("Name");
+                // Write the value
+                writer.WriteString("Bicycle Helmet");
+                // Write the End Element
+                writer.WriteEndElement();
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("ProductNumber");
+                // Write the value
+                writer.WriteString("HELM-01");
+                // Write the End Element
+                writer.WriteEndElement();
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("Color");
+                // Write the value
+                writer.WriteString("White");
+                // Write the End Element
+                writer.WriteEndElement();
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("StandardCost");
+                // Write the value
+                writer.WriteString("24.49");
+                // Write the End Element
+                writer.WriteEndElement();
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("ListPrice");
+                // Write the value
+                writer.WriteString("89.99");
+                // Write the End Element
+                writer.WriteEndElement();
+
+
+                // Write a Start Element (Child)
+                writer.WriteStartElement("Size");
+                // Write the value
+                writer.WriteString("Medium");
+                // Write the End Element
+                writer.WriteEndElement();
+
+                // Write the End Element (Parent)
+                writer.WriteEndElement();
+                // Write the End Element (Root)
+                writer.WriteEndElement();
+                // Close the Writer
+                writer.Close();
 
         // Close the Writer
         writer.Close();
@@ -68,8 +124,13 @@ namespace XMLSamples {
     /// Use the XmlWriterSettings object to specify formatting for the XML
     /// </summary>
     public string XmlWriterFormattingSave() {
-      // TODO: Write your code here
-      XmlWriterSettings settings = null;
+      
+      XmlWriterSettings settings = new()
+      {
+          // Set the Format Options
+          Encoding = Encoding.Unicode,
+          Indent = true,
+      };
 
       // Create the XML Writer
       using (XmlWriter writer = XmlWriter.Create(XmlFileName, settings)) {

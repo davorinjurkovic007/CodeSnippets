@@ -10,7 +10,9 @@ SaveViewModel vm = new();
 //vm.GetFirstNodeUsingXDocument();
 //vm.GetFirstNodeUsingXElement();
 
-vm.SaveUsingXDocument();
+//vm.SaveUsingXDocument();
+//vm.SaveUsingXmlWriter();
+vm.XmlWriterFormattingSave();
 
 // Stop console to view results
 Console.ReadKey();
