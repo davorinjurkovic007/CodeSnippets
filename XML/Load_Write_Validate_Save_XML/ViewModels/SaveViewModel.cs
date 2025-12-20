@@ -10,8 +10,9 @@ namespace XMLSamples {
   /// </summary>
   public class SaveViewModel {
     public SaveViewModel() {
-      // TODO: Modify your file location
-      XmlFileName = @"D:\Samples\Product.xml";
+            // TODO: Modify your file location
+            string path = Directory.GetCurrentDirectory();
+            XmlFileName = path + "\\Product.xml";
     }
 
     private readonly string XmlFileName;
@@ -26,7 +27,11 @@ namespace XMLSamples {
       // Create XML Document using Parse()
       XDocument doc = XDocument.Parse(xml);
 
-      // TODO: Write your code here
+            // Save to disk
+            //doc.Save(XmlFileName);
+
+            // Disable Formatting
+            doc.Save(XmlFileName, SaveOptions.DisableFormatting);
 
       // Display value
       string value = $"Check the file '{XmlFileName}' for the XML document";
@@ -43,7 +48,7 @@ namespace XMLSamples {
     public string SaveUsingXmlWriter() {
       // Create the XML Writer
       using (XmlWriter writer = XmlWriter.Create(XmlFileName)) {
-        //TODO:  Write your code here
+        
 
         // Close the Writer
         writer.Close();
