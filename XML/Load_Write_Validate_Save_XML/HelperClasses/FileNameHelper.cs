@@ -4,16 +4,17 @@
   /// </summary>
   public static class FileNameHelper {
     static FileNameHelper() {
-      // TODO: Set the path to the XML files
-      // NOTE: Normally, this would be in a configuration file
-      string path = @"D:\Samples\Xml\";
+            // TODO: Set the path to the XML files
+            // NOTE: Normally, this would be in a configuration file
+            //string path = @"D:\Samples\Xml\";
+            string path = Directory.GetCurrentDirectory();
 
-      ProductsFile = $"{path}Products.xml";
-      ProductsXsdFile = $"{path}Products.xsd";
-      ProductsAttributesFile = $"{path}ProductsAttributes.xml";
-      SalesOrderHeadersFile = $"{path}SalesOrderHeaders.xml";
-      SalesOrderDetailsFile = $"{path}SalesOrderDetails.xml";
-      SalesAndDetailsFile = $"{path}SalesAndDetails.xml";
+            ProductsFile = $"{path}\\Products.xml";
+      ProductsXsdFile = $"{path}\\Products.xsd";
+      ProductsAttributesFile = $"{path}\\ProductsAttributes.xml";
+      SalesOrderHeadersFile = $"{path}\\SalesOrderHeaders.xml";
+      SalesOrderDetailsFile = $"{path}\\SalesOrderDetails.xml";
+      SalesAndDetailsFile = $"{path}\\SalesAndDetails.xml";
     }
 
     public static string ProductsFile { get; set; }

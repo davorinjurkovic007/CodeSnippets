@@ -35,7 +35,8 @@ namespace XMLSamples {
     public XElement LoadUsingXElement() {
             string path = Directory.GetCurrentDirectory();
 
-            XElement elem = XElement.Load(path+ "\\Products.xml");
+            //XElement elem = XElement.Load(path+ "\\Products.xml");
+            XElement elem = XElement.Load(XmlFileName);
 
       // Display XElement
       Console.WriteLine(elem);
@@ -52,7 +53,10 @@ namespace XMLSamples {
       XDocument doc = XDocument.Load(XmlFileName);
       string value = string.Empty;
 
-      // TODO: Write your code here
+      if(doc.FirstNode != null)
+            {
+                value = doc.FirstNode.ToString();
+            }
 
       // Display Value
       Console.WriteLine(value);
@@ -69,10 +73,13 @@ namespace XMLSamples {
       XElement elem = XElement.Load(XmlFileName);
       string value = string.Empty;
 
-      // TODO: Write your code here
+            if (elem.FirstNode != null)
+            {
+                value = elem.FirstNode.ToString();
+            }
 
-      // Display Value
-      Console.WriteLine(value);
+            // Display Value
+            Console.WriteLine(value);
 
       return value;
     }
