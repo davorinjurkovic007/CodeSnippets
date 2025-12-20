@@ -16,8 +16,10 @@ namespace XMLSamples {
     /// Use the Load() method of the XDocument class
     /// </summary>
     public XDocument LoadUsingXDocument() {
-      
-      XDocument doc = null;
+
+            string path = Directory.GetCurrentDirectory();
+
+            XDocument doc = XDocument.Load(path+"\\Products.xml");
 
       // Display XDocument
       Console.WriteLine(doc);
@@ -31,8 +33,9 @@ namespace XMLSamples {
     /// Use the Load() method of the XElement class
     /// </summary>
     public XElement LoadUsingXElement() {
-      // TODO: Write your code here
-      XElement elem = null;
+            string path = Directory.GetCurrentDirectory();
+
+            XElement elem = XElement.Load(path+ "\\Products.xml");
 
       // Display XElement
       Console.WriteLine(elem);

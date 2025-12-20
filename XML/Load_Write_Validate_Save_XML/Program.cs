@@ -4,7 +4,8 @@
 LoadingViewModel vm = new();
 
 // Call Sample Method
-vm.LoadUsingXDocument();
+//vm.LoadUsingXDocument();
+vm.LoadUsingXElement();
 
 // Stop console to view results
 Console.ReadKey();
