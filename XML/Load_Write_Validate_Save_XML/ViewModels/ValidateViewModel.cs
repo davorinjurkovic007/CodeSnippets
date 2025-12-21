@@ -21,9 +21,15 @@ namespace XMLSamples {
     public XDocument ValidateXml() {
       XDocument doc = XDocument.Load(XmlFileName);
 
-      // TODO: Create an XmlSchemaSet and add XSD file to it
-     
-      // TODO: Validate the document
+            // Create an XmlSchemaSet and add XSD file to it
+            XmlSchemaSet set = new();
+            set.Add("", XsdFile);
+
+            // Validate the document
+            doc.Validate(set, (sender, e) =>
+            {
+                Console.WriteLine(e.ToString());
+            });
 
       // Display Message
       Console.WriteLine("XML is valid.");
