@@ -13,9 +13,11 @@ namespace XMLSamples {
             // TODO: Modify your file location
             string path = Directory.GetCurrentDirectory();
             XmlFileName = path + "\\Product.xml";
+            XsdFileName = path + "\\Product.xsd";
     }
 
     private readonly string XmlFileName;
+    private readonly string XsdFileName;
 
     #region SaveUsingXDocument Method
     /// <summary>
@@ -206,26 +208,36 @@ namespace XMLSamples {
     /// </summary>
     public string DataSetSave() {
       // TODO: MODIFY YOUR FILE LOCATION
-      string XsdFileName = @"D:\Samples\Product.xsd";
+      //string XsdFileName = @"D:\Samples\Product.xsd";
       // TODO: MODIFY YOUR DATABASE LOCATION
-      string path = @"D:\Samples\Database\XMLSamples.mdf";  // Normally in config file
+      //string path = @"D:\Samples\Database\XMLSamples.mdf";  // Normally in config file
       string sql = "SELECT * FROM Product";
-      string cs = @$"Server=(localdb)\mssqllocaldb;AttachDbFileName={path};Integrated Security=true";
+      //string cs = @$"Server=(localdb)\mssqllocaldb;AttachDbFileName={path};Integrated Security=true";
+      // Stavio već sve podatke u bazu
+      string cs = @$"Data Source=localhost,1433;Database=XMLSamples;User ID=sa;Password=Password_123#;Connect Timeout=30;Encrypt=False";
 
       using (SqlDataAdapter da = new(sql, cs)) {
         // Set the DataSetName = Root Node
         using (DataSet ds = new("Products")) {
           // Set TableName = Parent Nodes
           da.Fill(ds, "Product");
-          // TODO: Use a StreamWriter to write XML data
-          
+          // Use a StreamWriter to write XML data
+          using (StreamWriter xmlWriter = new StreamWriter(XmlFileName, false, Encoding.Unicode))
+                    {
+                        /// Write XML File
+                        ds.WriteXml(xmlWriter);
+                    }
 
-          // TODO: Use a StreamWriter to write XSD data
-          
+          // Use a StreamWriter to write XSD data
+          using(StreamWriter xsdWriter = new(XsdFileName, false, Encoding.Unicode))
+                    {
+                        ds.WriteXmlSchema(xsdWriter);
+                    }
         }
       }
 
       string value = $"Check the file '{XmlFileName}' for the XML document";
+      //value += $"{Environment.NewLine}Check the file '{XsdFileName}' for the XSD document";
       value += $"{Environment.NewLine}Check the file '{XsdFileName}' for the XSD document";
 
       // Display value

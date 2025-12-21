@@ -12,7 +12,8 @@ SaveViewModel vm = new();
 
 //vm.SaveUsingXDocument();
 //vm.SaveUsingXmlWriter();
-vm.XmlWriterFormattingSave();
+//vm.XmlWriterFormattingSave();
+vm.DataSetSave();
 
 // Stop console to view results
 Console.ReadKey();
