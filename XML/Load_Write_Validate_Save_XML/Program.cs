@@ -15,7 +15,9 @@ ValidateViewModel vm = new();
 //vm.SaveUsingXmlWriter();
 //vm.XmlWriterFormattingSave();
 //vm.DataSetSave();
-vm.ValidateXml();
+
+//vm.ValidateXml();
+vm.ValidateXmlWithError();
 
 // Stop console to view results
 Console.ReadKey();

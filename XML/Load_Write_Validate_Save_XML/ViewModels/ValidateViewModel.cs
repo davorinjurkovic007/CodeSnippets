@@ -45,13 +45,35 @@ namespace XMLSamples {
     public XDocument ValidateXmlWithError() {
       XDocument doc = XDocument.Load(XmlFileName);
 
-      // TODO: Create an XmlSchemaSet, add Xsd File Name
-      
-      // TODO: Create an invalid XElement object to add
-     
+            // Create an XmlSchemaSet, add Xsd File Name
+            XmlSchemaSet set = new();
+            set.Add("", XsdFile);
+
+            // Create an invalid XElement object to add
+            XElement elem =
+                    new("Customer",
+                        new XElement("CustomerId", "999"),
+                            new XElement("CustomerName", "InvalidCustomer"));
+            doc.Root.AddFirst(elem);
       
       bool errors = false;
-      // TODO: Validate the document
+            // Validate the document
+           
+            doc.Validate(set, (sender, e) =>
+            {
+                // check for Error
+                if (e.Severity == XmlSeverityType.Error) 
+                {
+                    errors = true;
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+                // Check for a warning
+                if(e.Severity == XmlSeverityType.Warning)
+                {
+                    errors = true;
+                    Console.WriteLine($"Warning: {e.Message}");
+                }
+            });
 
       if (!errors) {
         // Display Success Message
