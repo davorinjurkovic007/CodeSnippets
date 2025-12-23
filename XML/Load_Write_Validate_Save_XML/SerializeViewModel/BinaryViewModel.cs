@@ -4,8 +4,12 @@ namespace XMLSamples {
   public class BinaryViewModel {
     public BinaryViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\ProductBinary.xml";
-    }
+      //XmlFileName = @"D:\Samples\ProductBinary.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\ProductBinary.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -31,9 +35,11 @@ namespace XMLSamples {
 
       // Open a FileStream to write the binary XML to the file
       using (FileStream fs = new(XmlFileName, FileMode.Create)) {
-        // TODO: Create a new BinaryFormatter
-        
-      }
+                // Create a new BinaryFormatter
+                //BinaryFormatter formatter = new();
+
+                //formatter.Serialize(fs, prod);
+            }
 
       // Display Message
       string value = $"Binary file written '{XmlFileName}'";
