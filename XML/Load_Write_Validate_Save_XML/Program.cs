@@ -21,7 +21,8 @@
 //ExtensionViewModel vm = new();
 
 //SerializeAttributesViewModel vm = new();
-NestedViewModel vm = new();
+//NestedViewModel vm = new();
+DataContractViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -88,7 +89,10 @@ NestedViewModel vm = new();
 //vm.SerializeProduct();
 //vm.DeserializeProduct();
 
-vm.SerializeProductSales();
+//vm.SerializeProductSales();
+
+vm.SerializeProduct();
+vm.DeserializeProduct();
 
 // Stop console to view results
 Console.ReadKey();

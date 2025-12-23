@@ -6,8 +6,12 @@ namespace XMLSamples {
   public class DataContractViewModel {
     public DataContractViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\ProductDataContractFormatted.xml";
-    }
+      //XmlFileName = @"D:\Samples\ProductDataContractFormatted.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\ProductDataContractFormatted.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -33,7 +37,8 @@ namespace XMLSamples {
       // Change the private value
       prod.ChangePrivateString("Paul");
 
-      // TODO: Create XML Serializer
+            //  Create XML Serializer
+            DataContractSerializer serializer = new(typeof(ProductWithDataContract));
 
       // Create a MemoryStream to write into
       using (MemoryStream ms = new()) {
@@ -46,8 +51,8 @@ namespace XMLSamples {
 
         // Create an XmlWriter with the 'options'
         using (XmlWriter xw = XmlWriter.Create(ms, options)) {
-          // TODO: Serialize product object into MemoryStream
-          
+                    // Serialize product object into MemoryStream
+                    serializer.WriteObject(xw, prod);
         }
         // Retrieve the string from the MemoryStream
         value = Encoding.Unicode.GetString(ms.ToArray());
@@ -74,12 +79,13 @@ namespace XMLSamples {
       // Read from File
       value = File.ReadAllText(XmlFileName);
 
-      // TODO: Create XML Serializer
-      
+            // Create XML Serializer
+            DataContractSerializer serializer = new(typeof(ProductWithDataContract));
+
       // Create a MemoryStream with the string read from the file
       using (MemoryStream ms = new(Encoding.Unicode.GetBytes(value))) {
-        // TODO: Deserialize the string into a product object
-        
+        // Deserialize the string into a product object
+        prod = (ProductWithDataContract)serializer.ReadObject(ms);
       }
 
       // Display Product
