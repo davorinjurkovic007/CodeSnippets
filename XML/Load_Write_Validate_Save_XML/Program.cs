@@ -20,7 +20,8 @@
 //FormatViewModel vm = new();
 //ExtensionViewModel vm = new();
 
-SerializeAttributesViewModel vm = new();
+//SerializeAttributesViewModel vm = new();
+NestedViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -84,8 +85,10 @@ SerializeAttributesViewModel vm = new();
 //vm.SerializeProduct();
 //vm.DeserializeProduct();
 
-vm.SerializeProduct();
+//vm.SerializeProduct();
 //vm.DeserializeProduct();
+
+vm.SerializeProductSales();
 
 // Stop console to view results
 Console.ReadKey();

@@ -1,9 +1,15 @@
-﻿namespace XMLSamples {
+﻿using System.Net.WebSockets;
+
+namespace XMLSamples {
   public class NestedViewModel {
     public NestedViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\ProductSales.xml";
-    }
+      //XmlFileName = @"D:\Samples\ProductSales.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\Product.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -15,11 +21,11 @@
       ProductSales prod = ProductSalesRepository.Get();
       string value = string.Empty;
 
-      // TODO: Serialize the object
-      
+            // Serialize the object
+            value = prod.Serialize<ProductSales>();
 
-      // TODO: Write to File
-      
+      // Write to File
+      File.WriteAllText(XmlFileName, value);
 
       // Display Product
       Console.WriteLine(value);
