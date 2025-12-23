@@ -2,8 +2,12 @@
   public class SerializeAttributesViewModel {
     public SerializeAttributesViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\ProductWithAttributes.xml";
-    }
+      //XmlFileName = @"D:\Samples\ProductWithAttributes.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\ProductWithAttributes.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -27,8 +31,8 @@
         Size = null    // This element will be in the XML
       };
 
-      // TODO: Serialize the Object
-      
+            // Serialize the Object
+            value = prod.Serialize<ProductWithAttributes>();
 
       // Write to File
       File.WriteAllText(XmlFileName, value);
