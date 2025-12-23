@@ -16,7 +16,9 @@
 //LINQAggregateViewModel vm = new();
 //LINQAttributeViewModel vm = new();
 
-SerializeViewModel vm = new();
+//SerializeViewModel vm = new();
+//FormatViewModel vm = new();
+ExtensionViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -70,6 +72,12 @@ SerializeViewModel vm = new();
 //vm.Average();
 //vm.Minimum();
 //vm.Maximum();
+
+//vm.SerializeProduct();
+//vm.DeserializeProduct();
+
+//vm.SerializeProduct();
+//vm.DeserializeProduct();
 
 vm.SerializeProduct();
 vm.DeserializeProduct();

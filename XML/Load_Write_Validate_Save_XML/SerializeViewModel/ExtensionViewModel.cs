@@ -2,8 +2,12 @@
   public class ExtensionViewModel {
     public ExtensionViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\Product.xml";
-    }
+      //XmlFileName = @"D:\Samples\Product.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\Product.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -27,8 +31,8 @@
         ModifiedDate = Convert.ToDateTime("01-01-2022")
       };
 
-      // TODO: Serialize the object
-      
+      // Serialize the object
+      value = prod.Serialize<Product>();
 
       // Write to File
       File.WriteAllText(XmlFileName, value);
@@ -48,11 +52,11 @@
       Product prod = new();
       string value = string.Empty;
 
-      // TODO: Read from File
-      
+      // Read from File
+      value = File.ReadAllText(XmlFileName);
 
-      // TODO: Deserialize the object
-      
+            // Deserialize the object
+            prod = prod.Deserialize<Product>(value);
 
       // Display Product
       Console.WriteLine(prod);

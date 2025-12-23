@@ -6,8 +6,12 @@ namespace XMLSamples {
   public class FormatViewModel {
     public FormatViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\ProductFormatted.xml";
-    }
+      //XmlFileName = @"D:\Samples\ProductFormatted.xml";
+
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\ProductFormatted.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -32,7 +36,8 @@ namespace XMLSamples {
         ModifiedDate = Convert.ToDateTime("01-01-2022")
       };
 
-      // TODO: Create XML Serializer
+      // Create XML Serializer
+      XmlSerializer serializer = new XmlSerializer(typeof(Product));
       
       // Create a MemoryStream to write into
       using (MemoryStream ms = new()) {
@@ -45,10 +50,10 @@ namespace XMLSamples {
 
         // Use an XmlWriter so you can format the XML
         using (XmlWriter xw = XmlWriter.Create(ms, options)) {
-          // TODO: Serialize the product into a set of bytes
-          
-          // TODO: Convert the Bytes into a string
-          
+          // Serialize the product into a set of bytes
+          serializer.Serialize(xw, prod);
+          // Convert the Bytes into a string
+          value = Encoding.Unicode.GetString(ms.ToArray());
         }
       }
 
@@ -73,12 +78,12 @@ namespace XMLSamples {
       // Read from File
       value = File.ReadAllText(XmlFileName);
 
-      // TODO: Create XML Serializer
-      
+      // Create XML Serializer
+      XmlSerializer serializer = new XmlSerializer(typeof(Product));
       // Create a MemoryStream with the string read from the file
       using (MemoryStream ms = new(Encoding.Unicode.GetBytes(value))) {
-        // TODO: Deserialize the string into a product object
-
+        // Deserialize the string into a product object
+        prod = (Product)serializer.Deserialize(ms);
       }
 
       // Display Product
