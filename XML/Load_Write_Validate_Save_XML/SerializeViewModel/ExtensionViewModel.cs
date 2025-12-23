@@ -1,6 +1,4 @@
-﻿using XMLSamples.EntityClasses;
-
-namespace XMLSamples {
+﻿namespace XMLSamples {
   public class ExtensionViewModel {
     public ExtensionViewModel() {
       // TODO: MODIFY YOUR FILE LOCATION
@@ -17,7 +15,7 @@ namespace XMLSamples {
       string value = string.Empty;
 
             // Create a New Product Object
-      SerializeProduct prod = new()
+      Product prod = new()
       {
         ProductID = 999,
         Name = "A New Product",

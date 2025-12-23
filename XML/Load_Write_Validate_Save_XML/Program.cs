@@ -13,8 +13,10 @@
 //AggregateViewModel vm = new();
 
 //LINQElementViewModel vm = new();
-LINQAggregateViewModel vm = new();
+//LINQAggregateViewModel vm = new();
 //LINQAttributeViewModel vm = new();
+
+SerializeViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -67,7 +69,10 @@ LINQAggregateViewModel vm = new();
 //vm.Sum();
 //vm.Average();
 //vm.Minimum();
-vm.Maximum();
+//vm.Maximum();
+
+vm.SerializeProduct();
+vm.DeserializeProduct();
 
 // Stop console to view results
 Console.ReadKey();

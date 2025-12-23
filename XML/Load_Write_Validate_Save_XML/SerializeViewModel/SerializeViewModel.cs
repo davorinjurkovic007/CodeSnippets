@@ -1,12 +1,15 @@
-﻿using System.Xml.Serialization;
-using XMLSamples.EntityClasses;
+﻿using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace XMLSamples {
   public class SerializeViewModel {
     public SerializeViewModel() {
-      // TODO: MODIFY YOUR FILE LOCATION
-      XmlFileName = @"D:\Samples\Product.xml";
-    }
+            // TODO: MODIFY YOUR FILE LOCATION
+            //XmlFileName = @"D:\Samples\Product.xml";
+            string path = Directory.GetCurrentDirectory();
+
+            XmlFileName = (path + "\\Product.xml");
+        }
 
     private readonly string XmlFileName;
 
@@ -18,7 +21,7 @@ namespace XMLSamples {
       string value = string.Empty;
 
             // Create a New Product Object
-      SerializeProduct prod = new()
+      Product prod = new()
       {
         ProductID = 999,
         Name = "A New Product",
@@ -30,14 +33,16 @@ namespace XMLSamples {
         ModifiedDate = Convert.ToDateTime("01-01-2022")
       };
 
-      // TODO: Create XML Serializer
+            // Create XML Serializer
+            XmlSerializer serializer = new(typeof(Product));
       
       // Create a StringWriter to write product object into
       using (StringWriter sw = new()) {
-        // TODO: Serialize the product object to the StringWriter
+        // Serialize the product object to the StringWriter
+        serializer.Serialize(sw, prod);
         
-        // TODO: Get the serialized object as a string
-        
+        // Get the serialized object as a string
+        value = sw.ToString();
       }
 
       // Write to File
@@ -58,14 +63,16 @@ namespace XMLSamples {
       Product prod = null;
       string value = string.Empty;
 
-      // TODO: Read from File
-      
+      // Read from File
+      value = File.ReadAllText(XmlFileName);
 
-      // TODO: Create XML Serializer
+      // Create XML Serializer
+      XmlSerializer serializer = new(typeof(Product));
       
       // Create a StringReader with the value from the file
       using (StringReader sr = new(value)) {
-        // TODO: Convert the string to a product
+        // Convert the string to a product
+        prod = (Product)serializer.Deserialize(sr);
         
       }
 
