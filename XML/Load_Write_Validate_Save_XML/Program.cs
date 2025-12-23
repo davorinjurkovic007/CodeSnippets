@@ -10,7 +10,11 @@
 //ValidateViewModel vm = new();
 //ElementViewModel vm = new();
 //AttributeViewModel vm = new();
-AggregateViewModel vm = new();
+//AggregateViewModel vm = new();
+
+//LINQElementViewModel vm = new();
+LINQAggregateViewModel vm = new();
+//LINQAttributeViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -39,6 +43,25 @@ AggregateViewModel vm = new();
 //vm.GetAll();
 //vm.GetASingleNode();
 //vm.GetACollectionOfNodes();
+
+//vm.Count();
+//vm.Sum();
+//vm.Average();
+//vm.Minimum();
+//vm.Maximum();
+
+//vm.GetAllXDocument();
+//vm.GetAllXElement();
+//vm.WhereClause();
+//vm.GetASingleNode();
+//vm.OrderBy();
+//vm.AddToClass();
+//vm.Join();
+//vm.GetSalesWithDetails();
+
+//vm.GetAllUsingExtensionMethod();
+//vm.GetASingleNode();
+//vm.OrderBy();
 
 //vm.Count();
 //vm.Sum();

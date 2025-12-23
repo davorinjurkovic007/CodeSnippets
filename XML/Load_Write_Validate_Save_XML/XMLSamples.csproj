@@ -50,4 +50,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="LINQViewModels\" />
+    <Folder Include="SerializeViewModel\" />
+  </ItemGroup>
+
 </Project>

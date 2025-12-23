@@ -12,17 +12,20 @@ namespace XMLSamples
     public decimal ListPrice { get; set; }
     public string Size { get; set; }
 
-    #region ToString Override 
-    public override string ToString()
-    {
-      StringBuilder sb = new(1024);
+        public DateTime ModifiedDate { get; set; }
 
-      sb.AppendLine($"{Name}  ID: {ProductID}");
-      sb.AppendLine($"   Color: {Color ?? "n/a"}   Size: {Size ?? "n/a"}");
-      sb.AppendLine($"   Cost: {StandardCost:c}   Price: {ListPrice:c}");
+        #region ToString Override 
+        public override string ToString()
+        {
+            StringBuilder sb = new(1024);
 
-      return sb.ToString();
+            sb.AppendLine($"{Name}  ID: {ProductID}");
+            sb.AppendLine($"   Color: {Color ?? "n/a"}   Size: {Size ?? "n/a"}");
+            sb.AppendLine($"   Cost: {StandardCost:c}   Price: {ListPrice:c}");
+            sb.AppendLine($"   Modified Date: {ModifiedDate:d}");
+
+            return sb.ToString();
+        }
+        #endregion
     }
-    #endregion
-  }
 }
