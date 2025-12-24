@@ -22,7 +22,9 @@
 
 //SerializeAttributesViewModel vm = new();
 //NestedViewModel vm = new();
-DataContractViewModel vm = new();
+//DataContractViewModel vm = new();
+
+CachingViewModel vm = new();
 
 // Call Sample Method
 //vm.LoadUsingXDocument();
@@ -91,8 +93,10 @@ DataContractViewModel vm = new();
 
 //vm.SerializeProductSales();
 
-vm.SerializeProduct();
-vm.DeserializeProduct();
+//vm.SerializeProduct();
+//vm.DeserializeProduct();
+
+vm.GetData();
 
 // Stop console to view results
 Console.ReadKey();

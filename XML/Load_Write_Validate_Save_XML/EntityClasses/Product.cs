@@ -1,7 +1,9 @@
-﻿using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace XMLSamples
 {
+    [Table("Product", Schema = "dbo")]
   public partial class Product
   {
     public int ProductID { get; set; }
