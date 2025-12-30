@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="AsyncSerialization/AsyncSerialization.csproj" Id="896fffd7-0ee6-4195-8748-05f7e402b51a" />
   <Project Path="SerializationUsingJSONSerializer/SerializationUsingJSONSerializer.csproj" />
 </Solution>
